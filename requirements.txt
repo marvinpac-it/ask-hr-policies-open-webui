@@ -1,0 +1,12 @@
+onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+tensorrt
+openai
+langchain-community
+langchain-ollama
+langchain-openai
+langchain-chroma
+jupyterlab
+unstructured[all-docs]
+ipywidgets
+python-dotenv
+streamlit
