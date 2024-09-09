@@ -36,7 +36,7 @@ class Pipeline:
         self.name = "Ask HR Policies"
         self.valves = self.Valves(**{
             "CHAT_MODEL": "gpt-4o-mini",
-            "TEMPERATURE": 0.0
+            "TEMPERATURE": 0.0,
             "LANGFUSE_PUBLIC_KEY": "your_public_key_here",
             "LANGFUSE_SECRET_KEY": "your_secret_key_here",
             "LANGFUSE_URL": "your_langfuse_url_here"
