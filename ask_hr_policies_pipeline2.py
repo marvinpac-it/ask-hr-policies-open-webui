@@ -1,24 +1,3 @@
-"""
-title: HR Policies RAG
-author: Olivier Boudry
-date: 2024-08-16
-version: 1.0
-license: MIT
-description: A pipeline for a RAG application to retrieve and generate answers based on user queries on HR documents.
-requirements: langchain, langchain_openai, langchain_chroma, langchain_core, pydantic, openai, langfuse
-"""
-
-import os
-from typing import List, Union, Generator, Iterator
-from pydantic import BaseModel
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.chains import (
-    create_history_aware_retriever,
-    create_retrieval_chain,
-)
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_chroma import Chroma
 from langfuse.callback import CallbackHandler
 
 class Pipeline:
@@ -35,8 +14,8 @@ class Pipeline:
         self.id = "ask_hr_policies"
         self.name = "Ask HR Policies"
         self.valves = self.Valves(**{
-            "CHAT_MODEL": "gpt-4o-mini",
-            "TEMPERATURE": 0.0
+            "CHAT_MODEL": "gpt-4o-mini", 
+            "TEMPERATURE": 0.0,
             "LANGFUSE_PUBLIC_KEY": "your_public_key_here",
             "LANGFUSE_SECRET_KEY": "your_secret_key_here",
             "LANGFUSE_URL": "your_langfuse_url_here"
@@ -46,7 +25,7 @@ class Pipeline:
         self.history_aware_retriever = None
         self.rag_chain = None
         self.llm = None
-        self.langfuse_handler = None
+        self.langfuse_handler = None  # Add handler placeholder
 
     async def on_startup(self):
         print(f"on_startup:{__name__}")
@@ -124,9 +103,10 @@ class Pipeline:
             print("######################################")
 
         try:
+            # Use Langfuse callback handler in RAG chain invocation
             for chunk in self.rag_chain.stream(
-                    {"input": user_message, "chat_history": messages},
-                    config={"callbacks": [self.langfuse_handler]}
+                {"input": user_message, "chat_history": messages},
+                config={"callbacks": [self.langfuse_handler]}  # Integrating Langfuse
             ):
                 if "answer" in chunk:
                     yield chunk["answer"]
