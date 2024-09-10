@@ -126,16 +126,17 @@ class Pipeline:
         try:
             # Make sure title prompt does not go through RAG
             if "RESPOND ONLY WITH THE TITLE TEXT" in user_message:
-                title_response = self.llm.invoke(user_message,
-                    config={"callbacks": [self.langfuse_handler]})
-                return title_response.content
-
-            for chunk in self.rag_chain.stream(
-                    {"input": user_message, "chat_history": messages},
-                    config={"callbacks": [self.langfuse_handler]}
-            ):
-                if "answer" in chunk:
-                    yield chunk["answer"]
+                for chunk in self.llm.stream(user_message,
+                    config={"callbacks": [self.langfuse_handler]}):
+                    if "answer" in chunk:
+                        yield chunk["answer"]
+            else:
+                for chunk in self.rag_chain.stream(
+                        {"input": user_message, "chat_history": messages},
+                        config={"callbacks": [self.langfuse_handler]}
+                ):
+                    if "answer" in chunk:
+                        yield chunk["answer"]
 
         except Exception as e:
             print(f"Error in pipe: {str(e)}")
