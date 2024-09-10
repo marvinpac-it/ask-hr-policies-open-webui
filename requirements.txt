@@ -10,3 +10,4 @@ unstructured[all-docs]
 ipywidgets
 python-dotenv
 streamlit
+langfuse

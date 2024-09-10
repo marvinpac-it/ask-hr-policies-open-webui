@@ -124,6 +124,11 @@ class Pipeline:
             print("######################################")
 
         try:
+            # Make sure title prompt does not go through RAG
+            if "RESPOND ONLY WITH THE TITLE TEXT" in user_message:
+                title_response = self.llm.invoke(user_message)
+                return title_response.content
+
             for chunk in self.rag_chain.stream(
                     {"input": user_message, "chat_history": messages},
                     config={"callbacks": [self.langfuse_handler]}
