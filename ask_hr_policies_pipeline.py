@@ -126,7 +126,8 @@ class Pipeline:
         try:
             # Make sure title prompt does not go through RAG
             if "RESPOND ONLY WITH THE TITLE TEXT" in user_message:
-                title_response = self.llm.invoke(user_message)
+                title_response = self.llm.invoke(user_message,
+                    config={"callbacks": [self.langfuse_handler]})
                 return title_response.content
 
             for chunk in self.rag_chain.stream(
