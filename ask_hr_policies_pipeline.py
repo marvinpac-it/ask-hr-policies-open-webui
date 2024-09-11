@@ -37,9 +37,9 @@ class Pipeline:
         self.valves = self.Valves(**{
             "CHAT_MODEL": "gpt-4o-mini",
             "TEMPERATURE": 0.0,
-            "LANGFUSE_PUBLIC_KEY": "your_public_key_here",
-            "LANGFUSE_SECRET_KEY": "your_secret_key_here",
-            "LANGFUSE_URL": "your_langfuse_url_here"
+            "LANGFUSE_PUBLIC_KEY": os.environ['LANGFUSE_PUBLIC_KEY'],
+            "LANGFUSE_SECRET_KEY": os.environ['LANGFUSE_SECRET_KEY'],
+            "LANGFUSE_URL":  os.environ['LANGFUSE_URL']
         })
         self.documents = None
         self.index = None
@@ -134,4 +134,3 @@ class Pipeline:
         except Exception as e:
             print(f"Error in pipe: {str(e)}")
             return (f"Error in pipe: {str(e)}")
-
