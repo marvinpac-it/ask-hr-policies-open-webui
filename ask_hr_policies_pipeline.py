@@ -10,7 +10,7 @@ requirements: langchain, langchain_openai, langchain_chroma, langchain_core, pyd
 
 import os
 from typing import List, Union, Generator, Iterator
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import (
     create_history_aware_retriever,
