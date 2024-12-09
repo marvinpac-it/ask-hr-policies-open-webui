@@ -5,12 +5,12 @@ date: 2024-08-16
 version: 1.0
 license: MIT
 description: A pipeline for a RAG application to retrieve and generate answers based on user queries on HR documents.
-requirements: langchain, langchain_openai, langchain_chroma, langchain_core, pydantic, openai, langfuse
+requirements: langchain, langchain_openai, langchain_chroma, langchain_core, langfuse
 """
 
 import os
 from typing import List, Union, Generator, Iterator
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import (
     create_history_aware_retriever,
