@@ -53,7 +53,7 @@ class Pipeline:
         # Optional setup code when the server starts up.
         # Initialize the LLM and embedding
         embedding = OpenAIEmbeddings()
-        vectordb = Chroma(embedding_function=embedding, persist_directory="/app/backend/data/chroma")
+        vectordb = Chroma(embedding_function=embedding, persist_directory="/app/pipelines/chroma")
         retriever = vectordb.as_retriever()
 
         self.llm = ChatOpenAI(model_name=self.valves.CHAT_MODEL, temperature=self.valves.TEMPERATURE)
