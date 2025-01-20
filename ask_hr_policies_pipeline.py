@@ -5,7 +5,7 @@ date: 2024-08-16
 version: 1.0
 license: MIT
 description: A pipeline for a RAG application to retrieve and generate answers based on user queries on HR documents.
-requirements: langchain, langchain_openai, langchain_chroma, langchain_core, langfuse
+requirements: langchain==0.3.3, langchain_openai==0.2.2, langchain_chroma==0.1.4, langchain_core==0.3.10, pydantic==2.7.4, openai==1.51.2, langfuse==2.52.0
 """
 import pydantic
 print("PYDANTIC:", pydantic.__version__)
