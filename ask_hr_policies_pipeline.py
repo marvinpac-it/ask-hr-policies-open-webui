@@ -7,6 +7,8 @@ license: MIT
 description: A pipeline for a RAG application to retrieve and generate answers based on user queries on HR documents.
 requirements: langchain, langchain_openai, langchain_chroma, langchain_core, langfuse
 """
+import pydantic
+print("PYDANTIC:", pydantic.__version___)
 
 import os
 from typing import List, Union, Generator, Iterator
