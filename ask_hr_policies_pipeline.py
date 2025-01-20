@@ -8,7 +8,7 @@ description: A pipeline for a RAG application to retrieve and generate answers b
 requirements: langchain, langchain_openai, langchain_chroma, langchain_core, langfuse
 """
 import pydantic
-print("PYDANTIC:", pydantic.__version___)
+print("PYDANTIC:", pydantic.__version__)
 
 import os
 from typing import List, Union, Generator, Iterator
